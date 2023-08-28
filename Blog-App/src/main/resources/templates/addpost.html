@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<style>
+  body {
+    background: rgb(19, 19, 19);
+  }
+
+  .row {
+    background: white;
+    /* border-radius: 7px; */
+    /* box-shadow: 10px 10px 10px rgb(221, 83, 62); */
+
+
+  }
+
+  .btn-primary {
+    background-color: #000000;
+    background: rgb(9, 8, 8);
+    border-color: #000000;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    color: #000000;
+    background: #ffffff;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-lg   bg-dark " data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">GadgetTechSaga Blogs</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="dashboard">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="addpost">New Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Comments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout">Logout</a>
+                    </li>
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+  <div class="card text-center position-absolute top-50 start-50 translate-middle" >
+    <div class="card-header">
+      <h3 >Add Post</h3>
+    </div>
+    <div class="card-body text-start ">
+      <div>
+        <form th:action="@{/addpost}" th:object="${addpost}" method="post">
+          <label  class="form-label">Title</label>
+          <input type="text" th:field="*{title}" class="form-control" required>
+         
+          <label  class="form-label mt-2">Short Description</label>
+          <textarea class="form-control" th:field="*{description}" name="description"></textarea>
+          
+          <label  class="form-label mt-2">Content:</label>
+          <textarea id="editor" th:field="*{content}" ></textarea>
+          
+          <button type="submit" class="btn btn-primary mt-3  form-control ">Submit</button>
+          <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+          <script>
+            ClassicEditor
+              .create(document.querySelector('#editor'))
+              .catch(error => {
+                console.error(error);
+              });
+          </script>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
