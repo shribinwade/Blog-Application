@@ -12,4 +12,9 @@ public interface postService {
 	public List<Post> dashboardresponse ();
 	public List<Post> allposts();
 	public List<Post> scposts(String posttitle);
+	public boolean delete(Integer postId);
+
+	public Post postById(Integer postId);
+
+	
 }

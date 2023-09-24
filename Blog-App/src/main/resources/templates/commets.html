@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -28,13 +28,12 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="#">Posts</a></li>
-					<li class="nav-item"><a class="nav-link" href="/">All Post</a></li>
-					<li class="nav-item"><a class="nav-link" href="signup">Register</a>
+					<li class="nav-item"><a class="nav-link" href="addpost">New
+							Post</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Comments</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="login">Login</a>
+					<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
 					</li>
-
-
 				</ul>
 				<form class="d-flex" role="search">
 					<input class="form-control me-2" type="search" placeholder="Search"
@@ -51,27 +50,30 @@
 		<div class="row">
 			<!-- col-1 -->
 			<div class="col-sm-6 col-md-9 mt-3 p-3">
-				<table class="table table-striped table-bordered table-hover "
+				<table class="table table-striped table-bordered table-hover"
 					id="enqTbl">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Username</th>
+							<th scope="col">Email</th>
+							<th scope="col">Comments</th>
+							<th scope="col">Updated on</th>
+							<th class="text-center" scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody id="table-body">
+						<tr th:each="post : ${findByPostId}">
 
-					<tbody id="table-body ">
-						<tr th:each="post : ${allposts}">
-
-							<div class="card p-1 m-1 mb-3 w-auto" style="width: 18rem;">
-								<div class="card-header">
-									<h2 class="card-title" th:utext="${post.title} "></h2>
-									<h6 class="card-subtitle mb-2 text-body-secondary"
-										th:utext="${post.createdOn}"></h6>
-								</div>
-								<div class="card-body">
-
-
-									<p class="card-text" th:utext="${post.description}  "></p>
-									<a th:href="@{readmore(postID=${post.postId})}"
-										class="card-link">Read more</a>
-
-								</div>
-							</div>
+							<td th:text="${postStat.index} +1 "></td>
+							<td th:text="${post.name}"></td>
+							<td th:text="${post.email}"></td>
+							<td th:text="${post.content}"></td>
+							<td th:text="${post.createdOn}"></td>
+							<td><a th:href="@{deletecomment(ID=${post.Id})}"
+								class="btn btn-danger">Delete</a>
+							</td>
+							
 						</tr>
 
 					</tbody>
@@ -79,37 +81,9 @@
 
 			</div>
 
-			<!-- column 2 -->
-			<div class="col-6 col-md-3 mt-3 p-3">
 
-				<div class="card w-auto">
-					<div class="bg-dark card-header text-center">
-						<h4 class="text-white">Blog Search</h4>
-					</div>
-					<div class="card-body text-start d-flex">
-						<div class="d-flex">
-							<form th:action="@{/searchtitle}" th:object="${sc}" method="post">
-
-								<input class="form-control me-2" type="search"
-									th:field="*{title}" placeholder="Search" aria-label="Search"
-									required="required">
-								<button class="btn btn-dark mt-1 me-2" type="submit">Submit</button>
-
-							</form>
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
 		</div>
 	</div>
-
-
-
-
-
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

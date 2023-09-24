@@ -1,7 +1,6 @@
 package in.blog.entity;
 
 import java.time.LocalDate;
-import in.blog.entity.comments;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -40,7 +40,7 @@ public class Post {
 	@CreationTimestamp
 	private LocalDate createdOn;
 	
-	@CreationTimestamp
+	@UpdateTimestamp
 	private LocalDate updatedOn;
 	
 	@ManyToOne

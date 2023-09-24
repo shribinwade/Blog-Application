@@ -1,7 +1,5 @@
 package in.blog.service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.blog.binding.addPost;
-import in.blog.binding.getposts;
 import in.blog.entity.Post;
 import in.blog.entity.User;
 import in.blog.repo.PostRepo;
@@ -34,12 +31,13 @@ public class postServiceImpl implements postService {
 	public boolean savePost(addPost addpost) {
 		// TODO Auto-generated method stub
 		Post postentity = new Post();
-
+        
 		BeanUtils.copyProperties(addpost, postentity);
-
+          
 		Integer userId = (Integer) session.getAttribute("userId");
 
 		User user = userrepo.findById(userId).get();
+		
 		
 		postentity.setUser(user);
 		
@@ -73,6 +71,21 @@ public class postServiceImpl implements postService {
 	public List<Post> scposts(String title) {
 		List<Post> findAllByTitle = postrepo.findAllByTitleContaining(title);
 		return findAllByTitle;
+	}
+    @Override
+	public boolean delete(Integer postId) {
+		 postrepo.deleteById(postId);
+		return true;
+	}
+	@Override
+	public Post postById(Integer postId){
+		Optional<Post> postById = postrepo.findById(postId);
+		if(postById.isPresent()) {
+			Post post = postById.get();
+			return post;
+		}
+		return null;
+		
 	}
 
 }

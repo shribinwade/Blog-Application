@@ -86,6 +86,9 @@
           <textarea id="editor" th:field="*{content}" ></textarea>
           
           <button type="submit" class="btn btn-primary mt-3  form-control ">Submit</button>
+         <button class="btn btn-primary mt-3  form-control "><a href="dashboard">Home</a></button> 
+          <input type="hidden" th:field="*{postId}" />
+           <input type="hidden" th:field="*{createdOn}" />
           <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
           <script>
             ClassicEditor
