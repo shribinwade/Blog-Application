@@ -63,7 +63,7 @@ public class userSignUpImpl implements userService {
 		StringBuffer body = new StringBuffer();
 		body.append("<h1>Use temporary password to unlock your account</h1><br>");
 		body.append("Temporay password: " + generateRandomPwd + "<br>");
-		body.append("<a href=\"http://localhost:8080/unlock?email=" + to + "\">Click here to unlock your Account/>");
+		body.append("<a href=\"https://blog-application-production-bdd5.up.railway.app/unlock?email=" + to + "\">Click here to unlock your Account/>");
 
 		boolean sendEmail = emailutils.sendEmail(to, subject, body.toString());
 
