@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: AHPn0894YLhy5tg1UY8b
-    url: jdbc:mysql://containers-us-west-38.railway.app:6477/blog_app
+    url: jdbc:mysql://containers-us-west-38.railway.app:6477/railway
     username: root
     
   jpa:
